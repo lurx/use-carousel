@@ -1,0 +1,38 @@
+:root {
+	--use-carousel-dot-size: 0.5rem;
+	--use-carousel-dot-color: rgba(0, 0, 0, 0.5);
+	--use-carousel-dot-transition-duration: 1000ms;
+}
+.use-carousel-dots-wrapper,
+.use-carousel-dot {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.use-carousel {
+	&-dots-wrapper {
+		display: flex;
+		gap: 0.625em;
+		margin: 5rem auto;
+	}
+	&-dot {
+		width: var(--use-carousel-dot-size, 0.5rem);
+		height: var(--use-carousel-dot-size, 0.5rem);
+		border-radius: 100%;
+		border: none;
+		transition: var(--use-carousel-dot-transition-duration) transform ease-out;
+		transform: scale(1);
+		cursor: pointer;
+		background: var(--use-carousel-dot-color);
+		&.active {
+			transform: scale(1.5);
+		}
+	}
+	&-button {
+		border: none;
+		padding: 0;
+		margin: 0;
+		background: none;
+		cursor: pointer;
+	}
+}
