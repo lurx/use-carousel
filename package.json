@@ -1,6 +1,6 @@
 {
 	"name": "@lurx/use-carousel",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A React Carousel Hook and Components",
 	"scripts": {
 		"rollup": "rollup -c",
