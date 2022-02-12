@@ -31,7 +31,7 @@ export default [
 			commonjs(),
 			typescript({ tsconfig: './tsconfig.json' }),
 			postcss(),
-			svgr(),
+			svgr({ typescript: true }),
 			terser(),
 		],
 	},

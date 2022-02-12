@@ -2,8 +2,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import useCarousel from './index';
 import './use-carousel-story.scss';
+import classnames from 'classnames';
+import MotionBlurSvg from '../../assets/effects/motion-blur.svg';
 
-const slides = [];
+const slides = [
+	'https://www.fillmurray.com/400/300',
+	'https://loremflickr.com/400/300',
+	'https://placebeard.it/400x300',
+	'https://placekitten.com/400/300',
+];
 
 const DemoComponent = () => {
 	const {
@@ -11,6 +18,7 @@ const DemoComponent = () => {
 		currentSlide,
 		transitionDuration,
 		transitionActive,
+		transitionStyle,
 		registerTransition,
 		unregisterTransition,
 		gotoNextSlide,
@@ -19,19 +27,30 @@ const DemoComponent = () => {
 		PrevSlideButton,
 		NextSlideButton,
 		CarouselDots,
-		// MotionBlurSvg,
+		MotionBlurEffect,
 	} = useCarousel({
-		numberOfSlides: 6,
+		numberOfSlides: slides.length,
 	});
 
 	return (
 		<div className="story">
 			<h1>Here is a simple carousel:</h1>
 			<div className="wrapper">
+				<MotionBlurEffect />
 				<div className="carousel" onMouseEnter={() => unregisterTransition()} onMouseLeave={() => registerTransition()}>
 					<PrevSlideButton />
-					<div ref={carouselRef}>
-						<div>bla</div>
+					<div className="carousel-box">
+						<div
+							ref={carouselRef}
+							className={classnames('slides-box', { 'animate-motion-blur': transitionActive })}
+							style={transitionStyle}
+						>
+							{slides.map((slide, index) => (
+								<div key={`slide-${index}`} className="slide">
+									<img src={slide} alt={`slide demo #${index}`} />
+								</div>
+							))}
+						</div>
 					</div>
 					<NextSlideButton />
 				</div>

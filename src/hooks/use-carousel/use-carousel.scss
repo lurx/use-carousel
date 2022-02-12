@@ -37,4 +37,35 @@
 		background: none;
 		cursor: pointer;
 	}
+	&-animate-motion-blur {
+		animation: motion-blur 0.1s linear forwards, motion-blur 0.4s linear reverse forwards 0.1s;
+	}
+
+	@keyframes motion-blur {
+		0% {
+			filter: url(#blur0);
+			transform: scale(1, 1);
+		}
+		15% {
+			filter: url(#blur1);
+			transform: scale(1, 0.98);
+		}
+		30% {
+			filter: url(#blur2);
+			transform: scale(1, 0.93);
+		}
+		45% {
+			filter: url(#blur3);
+			transform: scale(1.1, 0.9);
+		}
+		60% {
+			filter: url(#blur4);
+			transform: scale(1.2, 0.88);
+		}
+		75%,
+		100% {
+			filter: url(#blur5);
+			transform: scale(1.35, 0.85);
+		}
+	}
 }

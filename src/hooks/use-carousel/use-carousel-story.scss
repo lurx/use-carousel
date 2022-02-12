@@ -8,9 +8,63 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 2rem;
+		.carousel-box {
+			overflow: hidden;
+			margin: 0 auto;
+			white-space: nowrap;
+			position: relative;
+		}
+		.slides-box {
+			width: 400px;
+			height: 300px;
+			aspect-ratio: 4 / 3;
+			position: relative;
+			.slide {
+				height: 100%;
+				width: 100%;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+			}
+			img {
+				height: 100%;
+				object-fit: cover;
+			}
+		}
 	}
 	.arrow {
 		width: 1.25rem;
 		height: 1.25rem;
+	}
+	.animate-motion-blur {
+		animation: motion-blur 0.1s linear forwards, motion-blur 0.4s linear reverse forwards 0.1s;
+	}
+}
+
+@keyframes motion-blur {
+	0% {
+		filter: url(#blur0);
+		transform: scale(1, 1);
+	}
+	15% {
+		filter: url(#blur1);
+		transform: scale(1, 0.98);
+	}
+	30% {
+		filter: url(#blur2);
+		transform: scale(1, 0.93);
+	}
+	45% {
+		filter: url(#blur3);
+		transform: scale(1.1, 0.9);
+	}
+	60% {
+		filter: url(#blur4);
+		transform: scale(1.2, 0.88);
+	}
+	75%,
+	100% {
+		filter: url(#blur5);
+		transform: scale(1.35, 0.85);
 	}
 }

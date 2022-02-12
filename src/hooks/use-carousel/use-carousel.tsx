@@ -1,15 +1,20 @@
-import React, { MouseEventHandler, ReactComponentElement, useEffect, useRef, useState } from 'react';
-// import { CarouselButton } from '../components';
-import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid';
+import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
-// const MotionBlurSvg = require("../media/effects/motion-blur.svg");
+
+//icons
+import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid';
+
+// effects
+import MotionBlurEffect from '../../assets/effects/motion-blur';
+
+//styles
 import './use-carousel.scss';
 
 const NEXT_SLIDE_INTERVAL = 5000;
 const TRANSITION_DURATION = 500;
 const NUMBER_OF_SLIDES = 0;
 
-const CarouselParts = ({
+const useCarousel = ({
 	numberOfSlides = NUMBER_OF_SLIDES,
 	nextSlideInterval = NEXT_SLIDE_INTERVAL,
 	transitionDuration = TRANSITION_DURATION,
@@ -18,6 +23,11 @@ const CarouselParts = ({
 	const [transitionActive, setTransitionActive] = useState(false);
 	const lastSlide = numberOfSlides - 1;
 	const carouselRef = useRef<HTMLDivElement>(null);
+
+	const transitionStyle = {
+		transition: `${transitionDuration}ms transform ease-in-out`,
+		transform: `translateX(calc(${currentSlide} * -100%))`,
+	};
 
 	const useSlideTransition = (nextSlide: Function) => {
 		let timer = setTimeout(() => null, 0);
@@ -38,6 +48,7 @@ const CarouselParts = ({
 
 		return { registerTransition, unregisterTransition };
 	};
+
 	const gotoNextSlide = () => {
 		setTransitionActive(true);
 		if (currentSlide < lastSlide) {
@@ -47,6 +58,7 @@ const CarouselParts = ({
 		}
 		setTransitionActive(false);
 	};
+
 	const gotoPrevSlide = () => {
 		setTransitionActive(true);
 		if (currentSlide > 0) {
@@ -56,18 +68,23 @@ const CarouselParts = ({
 		}
 		setTransitionActive(false);
 	};
+
 	const gotoSlideByIndex = (index: number) => setCurrentSlide(index);
 
-	const PrevSlideButton = () => (
-		<button type="button" className={classnames('use-carousel-button')} onClick={gotoPrevSlide}>
-			<ArrowNarrowLeftIcon className="arrow" />
-		</button>
-	);
-	const NextSlideButton = () => (
-		<button type="button" className={classnames('use-carousel-button')} onClick={gotoNextSlide}>
-			<ArrowNarrowRightIcon className="arrow" />
-		</button>
-	);
+	const PrevSlideButton = () => {
+		return (
+			<button type="button" className={classnames('use-carousel-button')} onClick={gotoPrevSlide}>
+				<ArrowNarrowLeftIcon className="arrow" />
+			</button>
+		);
+	};
+	const NextSlideButton = () => {
+		return (
+			<button type="button" className={classnames('use-carousel-button')} onClick={gotoNextSlide}>
+				<ArrowNarrowRightIcon className="arrow" />
+			</button>
+		);
+	};
 
 	const CarouselDots = () => {
 		return (
@@ -100,6 +117,7 @@ const CarouselParts = ({
 		carouselRef,
 		currentSlide,
 		transitionDuration,
+		transitionStyle,
 		transitionActive,
 		registerTransition,
 		unregisterTransition,
@@ -109,8 +127,8 @@ const CarouselParts = ({
 		PrevSlideButton,
 		NextSlideButton,
 		CarouselDots,
-		// MotionBlurSvg,
+		MotionBlurEffect,
 	};
 };
 
-export default CarouselParts;
+export default useCarousel;
