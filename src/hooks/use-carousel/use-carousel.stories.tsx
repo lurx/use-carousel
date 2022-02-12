@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import classnames from 'classnames';
+
 import useCarousel from './index';
 import './use-carousel-story.scss';
-import classnames from 'classnames';
-import MotionBlurSvg from '../../assets/effects/motion-blur.svg';
 
 const slides = [
 	'https://www.fillmurray.com/400/300',
