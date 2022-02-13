@@ -1,5 +1,6 @@
 .story {
 	font-family: Arial, sans-serif;
+	color: white;
 	.wrapper {
 		display: flex;
 		flex-direction: column;
@@ -35,6 +36,7 @@
 	.arrow {
 		width: 1.25rem;
 		height: 1.25rem;
+		color: white;
 	}
 	.animate-motion-blur {
 		animation: motion-blur 0.1s linear forwards, motion-blur 0.4s linear reverse forwards 0.1s;
